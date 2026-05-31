@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get a Recommendation – ForkFinder</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="ForkFinder Home">
+        <img src="images/logo.png" alt="ForkFinder logo" />
+        <span class="nav-logo-text">Fork<span>Finder</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="navMenu" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="restaurants.html">Restaurants</a></li>
+          <li><a href="recommend.html">Recommend</a></li>
+          <li><a href="reservation.html">Reserve</a></li>
+          <li><a href="register.html">Register</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main id="main-content">
+
+    <section class="page-hero" aria-labelledby="page-heading">
+      <h1 id="page-heading">Find Your Perfect Restaurant</h1>
+      <p>Tell us your preferences and we'll find the best match for you</p>
+    </section>
+
+    <section class="section-pad" aria-labelledby="recommend-heading">
+      <div class="container">
+        <div class="recommend-layout">
+
+          <!-- Preference Form -->
+          <div>
+            <h2 class="section-title" id="recommend-heading">Your Preferences</h2>
+            <p class="section-subtitle">Answer three quick questions to get matched with the ideal restaurant.</p>
+
+            <form id="recommendForm" novalidate aria-label="Restaurant recommendation form">
+
+              <!-- Dietary Preference -->
+              <div class="form-group">
+                <label for="recDietary">Dietary Preference <span class="required" aria-hidden="true">*</span></label>
+                <select id="recDietary" name="recDietary" required>
+                  <option value="" disabled selected>Select dietary preference…</option>
+                  <option value="None">No specific preference</option>
+                  <option value="Vegan">Vegan</option>
+                  <option value="Halal">Halal</option>
+                </select>
+                <span class="field-hint">We will only show restaurants that meet your dietary needs.</span>
+              </div>
+
+              <!-- Budget -->
+              <div class="form-group">
+                <label for="recBudget">Budget per Person <span class="required" aria-hidden="true">*</span></label>
+                <select id="recBudget" name="recBudget" required>
+                  <option value="" disabled>Select budget…</option>
+                  <option value="25">Under $30</option>
+                  <option value="40" selected>$30 – $50</option>
+                  <option value="65">$50 – $80</option>
+                  <option value="120">$80+</option>
+                </select>
+                <span class="field-hint">We will match restaurants within your price range.</span>
+              </div>
+
+              <!-- Dining Purpose -->
+              <div class="form-group">
+                <label for="recPurpose">Dining Purpose <span class="required" aria-hidden="true">*</span></label>
+                <select id="recPurpose" name="recPurpose" required>
+                  <option value="" disabled selected>Select dining purpose…</option>
+                  <option value="Family">Family Outing</option>
+                  <option value="Date">Date Night</option>
+                  <option value="Business">Business Dining</option>
+                </select>
+                <span class="field-hint">Different occasions call for different atmospheres.</span>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Find My Restaurant →</button>
+              </div>
+
+            </form>
+          </div>
+
+          <!-- Results Panel -->
+          <div>
+            <h2 class="section-title">Recommended for You</h2>
+            <p class="section-subtitle">Matches appear here after you submit your preferences.</p>
+
+            <section id="recommendResults" class="recommend-results" aria-live="polite" aria-label="Recommendation results">
+              <p class="no-results-msg">Complete the form on the left to see your personalised restaurant recommendations.</p>
+            </section>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section-pad" style="background:var(--color-surface);border-top:1px solid var(--color-border);" aria-labelledby="how-heading">
+      <div class="container">
+        <h2 class="section-title text-center" id="how-heading">How Our Recommendation Works</h2>
+        <p class="section-subtitle text-center">Our engine uses three key rules to match you with the right restaurant.</p>
+
+        <div class="features-grid" style="margin-top:2rem">
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🥗</div>
+            <h3>Dietary Filter</h3>
+            <p>Restaurants that don't match your dietary requirements are automatically excluded from results.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">💰</div>
+            <h3>Budget Matching</h3>
+            <p>We only show restaurants within or close to your stated per-person budget — no surprises.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🎯</div>
+            <h3>Occasion Score</h3>
+            <p>Each restaurant is scored for how well it suits your dining occasion, from family dinners to business lunches.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Fork<span>Finder</span></h3>
+          <p>Melbourne's premier restaurant discovery and reservation platform. Connecting great food with great people since 2024.</p>
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="restaurants.html">Restaurants</a></li>
+            <li><a href="recommend.html">Recommend</a></li>
+            <li><a href="reservation.html">Make a Reservation</a></li>
+            <li><a href="register.html">Register</a></li>
+          </ul>
+        </nav>
+        <div class="footer-links">
+          <h4>Cuisines</h4>
+          <ul>
+            <li><a href="restaurants.html">Japanese</a></li>
+            <li><a href="restaurants.html">Italian</a></li>
+            <li><a href="restaurants.html">Indian</a></li>
+            <li><a href="restaurants.html">Middle Eastern</a></li>
+            <li><a href="restaurants.html">Seafood</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ForkFinder. Built for COS10005 Web Development by Janidu Ranasinghe (105316980) - Swinburne University.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
