@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Make a Reservation – ForkFinder</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="ForkFinder Home">
+        <img src="images/logo.png" alt="ForkFinder logo" />
+        <span class="nav-logo-text">Fork<span>Finder</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="navMenu" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="restaurants.html">Restaurants</a></li>
+          <li><a href="recommend.html">Recommend</a></li>
+          <li><a href="reservation.html">Reserve</a></li>
+          <li><a href="register.html">Register</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main id="main-content">
+
+    <section class="page-hero" aria-labelledby="page-heading">
+      <h1 id="page-heading">Make a Reservation</h1>
+      <p>Secure your table in minutes with our simple booking form</p>
+    </section>
+
+    <section class="section-pad" aria-labelledby="reservation-heading">
+      <div class="container">
+        <div class="form-card" style="max-width:720px">
+          <h2 id="reservation-heading">Reservation Details</h2>
+          <p class="subtitle">Fields marked <span style="color:var(--color-primary)">*</span> are required.</p>
+
+          <!-- POST to Swinburne test server -->
+          <form id="reservationForm"
+                method="POST"
+                action="http://mercury.swin.edu.au/it000000/cos10005/regtest.php"
+                novalidate
+                aria-label="Restaurant reservation form">
+
+            <!-- ── Personal Details ── -->
+            <h3 style="font-size:1rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-text-light);margin-bottom:1rem">Personal Details</h3>
+
+            <div class="form-group">
+              <label for="resName">Full Name <span class="required" aria-hidden="true">*</span></label>
+              <input type="text" id="resName" name="full_name" autocomplete="name"
+                     placeholder="e.g. Jane Smith"
+                     aria-required="true"
+                     aria-describedby="resNameError" />
+              <span class="error-msg" id="resNameError" role="alert"></span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="resEmail">Email Address <span class="required" aria-hidden="true">*</span></label>
+                <input type="email" id="resEmail" name="email" autocomplete="email"
+                       placeholder="e.g. jane@example.com"
+                       aria-required="true"
+                       aria-describedby="resEmailError" />
+                <span class="error-msg" id="resEmailError" role="alert"></span>
+              </div>
+              <div class="form-group">
+                <label for="resPhone">Phone Number <span class="required" aria-hidden="true">*</span></label>
+                <input type="tel" id="resPhone" name="phone" autocomplete="tel"
+                       placeholder="e.g. 0412 345 678"
+                       aria-required="true"
+                       aria-describedby="resPhoneError" />
+                <span class="error-msg" id="resPhoneError" role="alert"></span>
+              </div>
+            </div>
+
+            <hr class="divider" />
+
+            <!-- ── Booking Details ── -->
+            <h3 style="font-size:1rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-text-light);margin-bottom:1rem">Booking Details</h3>
+
+            <!-- Restaurant Selection -->
+            <div class="form-group">
+              <label for="resRestaurant">Restaurant <span class="required" aria-hidden="true">*</span></label>
+              <select id="resRestaurant" name="restaurant"
+                      aria-required="true"
+                      aria-describedby="resRestaurantError">
+                <option value="">Select a restaurant…</option>
+                <option value="chinchin">Chin Chin – South-East Asian, CBD ($45–$89 pp)</option>
+                <option value="movida">MoVida Original – Spanish, Hosier Lane ($60–$80 pp)</option>
+                <option value="minamishima">Minamishima – Japanese Omakase, Richmond ($250–$350 pp)</option>
+                <option value="tonka">Tonka – Indian, Duckboard Place CBD ($60–$100 pp)</option>
+                <option value="tipo">Tipo 00 – Italian, Little Bourke St CBD ($50–$80 pp)</option>
+                <option value="gimlet">Gimlet at Cavendish House – Modern Australian, CBD ($100–$180 pp)</option>
+              </select>
+              <span class="error-msg" id="resRestaurantError" role="alert"></span>
+            </div>
+
+            <!-- Deposit Display -->
+            <div class="deposit-info-box" aria-live="polite" aria-atomic="true">
+              <strong>Deposit Required:</strong>
+              <span id="depositDisplay" aria-label="Required deposit amount">—</span>
+              <input type="hidden" id="depositAmount" name="deposit_amount" />
+              <br />
+              <small>Deposits are non-refundable within 24 hours of your reservation time.</small>
+            </div>
+
+            <div class="form-row" style="margin-top:1.25rem">
+              <div class="form-group">
+                <label for="resDate">Reservation Date <span class="required" aria-hidden="true">*</span></label>
+                <input type="date" id="resDate" name="reservation_date"
+                       aria-required="true"
+                       aria-describedby="resDateError" />
+                <span class="error-msg" id="resDateError" role="alert"></span>
+              </div>
+              <div class="form-group">
+                <label for="resTime">Reservation Time <span class="required" aria-hidden="true">*</span></label>
+                <input type="time" id="resTime" name="reservation_time"
+                       min="11:00" max="22:00"
+                       aria-required="true"
+                       aria-describedby="resTimeError" />
+                <span class="field-hint">Opening hours: 11:00 AM – 10:00 PM</span>
+                <span class="error-msg" id="resTimeError" role="alert"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="resPeople">Number of People <span class="required" aria-hidden="true">*</span></label>
+              <input type="number" id="resPeople" name="num_people"
+                     min="1" max="50" placeholder="e.g. 4"
+                     aria-required="true"
+                     aria-describedby="resPeopleError" />
+              <span class="error-msg" id="resPeopleError" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="resSpecial">Special Requests <span style="color:var(--color-text-light);font-weight:400">(optional)</span></label>
+              <textarea id="resSpecial" name="special_requests"
+                        placeholder="Dietary needs, seating preferences, celebrations, accessibility requirements…"
+                        aria-describedby="resSpecialHint"></textarea>
+              <span class="field-hint" id="resSpecialHint">We'll do our best to accommodate your requests.</span>
+            </div>
+
+            <hr class="divider" />
+
+            <!-- ── Deposit & Payment ── -->
+            <h3 style="font-size:1rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-text-light);margin-bottom:1rem">Deposit &amp; Payment</h3>
+
+            <div class="form-group">
+              <fieldset>
+                <legend style="font-size:0.88rem;font-weight:600;margin-bottom:0.5rem">
+                  Payment Method <span class="required" aria-hidden="true">*</span>
+                </legend>
+                <div class="radio-group" role="group" aria-describedby="paymentError">
+                  <label class="radio-option">
+                    <input type="radio" name="paymentMethod" id="payVoucher" value="voucher" />
+                    🎟️ Voucher Code
+                  </label>
+                  <label class="radio-option">
+                    <input type="radio" name="paymentMethod" id="payOnline" value="online" />
+                    💳 Online Payment
+                  </label>
+                </div>
+              </fieldset>
+              <span class="error-msg" id="paymentError" role="alert"></span>
+            </div>
+
+            <!-- Voucher Code Section (shown when Voucher is selected) -->
+            <div id="voucherSection" class="form-group hidden" aria-live="polite">
+              <label for="resVoucher">Voucher Code</label>
+              <input type="text" id="resVoucher" name="voucher_code"
+                     placeholder="Enter 12-digit voucher code"
+                     maxlength="12"
+                     aria-describedby="resVoucherHint" />
+              <span class="field-hint" id="resVoucherHint">Enter your 12-digit promotional voucher code.</span>
+            </div>
+
+            <!-- Credit Card Section (shown when Online Payment selected) -->
+            <div id="cardSection" class="hidden" aria-live="polite">
+              <div class="form-group">
+                <label for="resCardType">Card Type <span class="required" aria-hidden="true">*</span></label>
+                <select id="resCardType" name="card_type" aria-describedby="resCardTypeHint">
+                  <option value="visa">Visa (16 digits)</option>
+                  <option value="mastercard">Mastercard (16 digits)</option>
+                  <option value="amex">American Express (15 digits)</option>
+                </select>
+                <span class="field-hint" id="resCardTypeHint">Select your card type before entering the number.</span>
+              </div>
+              <div class="form-group">
+                <label for="resCardNumber">Card Number <span class="required" aria-hidden="true">*</span></label>
+                <input type="text" id="resCardNumber" name="card_number"
+                       placeholder="Digits only — use fake card number for testing"
+                       maxlength="16"
+                       aria-required="true"
+                       aria-describedby="resCardNumberError resCardHint" />
+                <span class="field-hint" id="resCardHint">⚠️ Use fake card numbers only. No real payment is processed.</span>
+                <span class="error-msg" id="resCardNumberError" role="alert"></span>
+              </div>
+            </div>
+
+            <hr class="divider" />
+
+            <!-- ── Billing Email ── -->
+            <h3 style="font-size:1rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-text-light);margin-bottom:1rem">Billing Information</h3>
+
+            <div class="form-group">
+              <label for="resBillingEmail">Billing Email Address <span class="required" aria-hidden="true">*</span></label>
+              <input type="email" id="resBillingEmail" name="billing_email"
+                     placeholder="e.g. jane@example.com"
+                     autocomplete="email"
+                     aria-required="true"
+                     aria-describedby="resBillingEmailError" />
+              <span class="error-msg" id="resBillingEmailError" role="alert"></span>
+              <div style="margin-top:0.5rem">
+                <label class="checkbox-option" style="border:none;padding:0;display:inline-flex">
+                  <input type="checkbox" id="sameEmail" name="same_email" />
+                  <span>Same as email address above</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Confirm Reservation</button>
+              <a href="restaurants.html" class="btn btn-outline" style="color:var(--color-text);border-color:var(--color-border)">Browse Restaurants</a>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Fork<span>Finder</span></h3>
+          <p>Melbourne's premier restaurant discovery and reservation platform. Connecting great food with great people since 2024.</p>
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="restaurants.html">Restaurants</a></li>
+            <li><a href="recommend.html">Recommend</a></li>
+            <li><a href="reservation.html">Make a Reservation</a></li>
+            <li><a href="register.html">Register</a></li>
+          </ul>
+        </nav>
+        <div class="footer-links">
+          <h4>Cuisines</h4>
+          <ul>
+            <li><a href="restaurants.html">Japanese</a></li>
+            <li><a href="restaurants.html">Italian</a></li>
+            <li><a href="restaurants.html">Indian</a></li>
+            <li><a href="restaurants.html">Middle Eastern</a></li>
+            <li><a href="restaurants.html">Seafood</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ForkFinder. Built for COS10005 Web Development – Swinburne University.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
