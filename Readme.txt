@@ -7,7 +7,7 @@
 STUDENT ID:   105316980
 STUDENT NAME: Janidu Ranasinghe
 
-GITHUB REPOSITORY: https://github.com/[YOUR_USERNAME]/cos10005-assignment2
+GITHUB REPOSITORY: https://github.com/JaniduRanasinghe/wd_assign2_105316980.git
 
 --------------------------------------------------------------------------------
 WEBSITE STRUCTURE
